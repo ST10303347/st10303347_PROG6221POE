@@ -27,10 +27,13 @@ namespace st10303347_PROG6221POE
                 switch (menuchoice)
                 {
                     case 1:
+                        Console.WriteLine("What is your recipe name");
+                        string name = Console.ReadLine();   
                         Console.WriteLine("How many ingredients will you be entering?");
                         int noOfIngredients = InputMethods.numberValidation(1, 100);
                         String[] ingredientsArr = new String[noOfIngredients];
                         int[] QuantitiesArr = new int[noOfIngredients];
+                        String[] ingMeasurementArr = new String[noOfIngredients];
                         Console.Clear();
 
                         for (int i = 0; i < noOfIngredients; i++)
@@ -43,6 +46,7 @@ namespace st10303347_PROG6221POE
                             String ingMeasurement = Console.ReadLine();
                             int quantity = InputMethods.CheckQuantity(1, 1000);
                             ingredientsArr[i] = ingName;
+                            ingMeasurementArr[i] = ingMeasurement;  
                             QuantitiesArr[i] = quantity;    
                             Console.Clear();
 
@@ -51,16 +55,27 @@ namespace st10303347_PROG6221POE
                         Console.WriteLine("How many Steps will the recipe have?");    
                         int noOfSteps = InputMethods.numberValidation(1, 100);
                         String[] stepsArr = new string[noOfSteps];
+                        for (int i = 0; i < noOfSteps; i++)
+                        {
+                            int n = 1 + i;
+                            Console.WriteLine("Step " + n + ": ");
+                            String step = Console.ReadLine();
+                            stepsArr[i] = step;
 
+
+                        }
+                        Recipes testOB = new Recipes(name, ingredientsArr, QuantitiesArr, ingMeasurementArr, stepsArr);
                         
-
+                        Console.Clear();
+                        Console.WriteLine(testOB.ToString());
+                     
 
                         break;
 
 
                     case 2:
-
-                         
+                        
+                       
                         break;
                     case 3:
                         Console.WriteLine("3333");
