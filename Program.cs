@@ -20,7 +20,7 @@ namespace st10303347_PROG6221POE
 
         //Boolean to keep screen on, Application will always return to the begining of a while loop after breaking out of a if statement or switch case
             while (screenON) {
-
+                Console.Clear();
                 Console.WriteLine("1. Create a new recipe\n2.View Recipe\n3.Scale recipe\n4.Reset Quantities\n5.Clear Data\n6.Exit Aplication");
                 int menuchoice = InputMethods.numberValidation(1, 6);
             //Above is a method to validate user input so application does not crash  
@@ -68,7 +68,8 @@ namespace st10303347_PROG6221POE
                         
                         Console.Clear();
                         Console.WriteLine(testOB.ToString());
-                     
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
 
                         break;
 
