@@ -1,4 +1,5 @@
-﻿using System.Runtime.ConstrainedExecution;
+﻿using System;
+using System.Runtime.ConstrainedExecution;
 
 namespace st10303347_PROG6221POE
 {
@@ -9,12 +10,13 @@ namespace st10303347_PROG6221POE
         {
         //Declarations   
             Boolean screenON = true;
-           
+            Recipes testOB = new Recipes(null,null,null,null,null);
+            double scale = 1;
+            double newScale = 1;
 
 
 
-
-        //Starts Here
+            //Starts Here
             Console.WriteLine("Welcome to Recipe.net8");
 
 
@@ -27,47 +29,52 @@ namespace st10303347_PROG6221POE
                 switch (menuchoice)
                 {
                     case 1:
-                        Console.WriteLine("What is your recipe name");
-                        string name = Console.ReadLine();   
-                        Console.WriteLine("How many ingredients will you be entering?");
-                        int noOfIngredients = InputMethods.numberValidation(1, 100);
-                        String[] ingredientsArr = new String[noOfIngredients];
-                        int[] QuantitiesArr = new int[noOfIngredients];
-                        String[] ingMeasurementArr = new String[noOfIngredients];
-                        Console.Clear();
-
-                        for (int i = 0; i < noOfIngredients; i++)
-                        {
-
-                            int n = 1 + i;
-                            Console.Write("Ingredient "+ n +"\nName: ");
-                            String ingName = Console.ReadLine();
-                            Console.Write("Measurement: ");
-                            String ingMeasurement = Console.ReadLine();
-                            int quantity = InputMethods.CheckQuantity(1, 1000);
-                            ingredientsArr[i] = ingName;
-                            ingMeasurementArr[i] = ingMeasurement;  
-                            QuantitiesArr[i] = quantity;    
+                        if (testOB.RecipeName == null) {
+                            Console.WriteLine("What is your recipe name");
+                            string name = Console.ReadLine();
+                            Console.WriteLine("How many ingredients will you be entering?");
+                            int noOfIngredients = InputMethods.numberValidation(1, 100);
+                            String[] ingredientsArr = new String[noOfIngredients];
+                            double[] QuantitiesArr = new double[noOfIngredients];
+                            String[] ingMeasurementArr = new String[noOfIngredients];
                             Console.Clear();
 
-                        }   
+                            for (int i = 0; i < noOfIngredients; i++)
+                            {
 
-                        Console.WriteLine("How many Steps will the recipe have?");    
-                        int noOfSteps = InputMethods.numberValidation(1, 100);
-                        String[] stepsArr = new string[noOfSteps];
-                        for (int i = 0; i < noOfSteps; i++)
-                        {
-                            int n = 1 + i;
-                            Console.WriteLine("Step " + n + ": ");
-                            String step = Console.ReadLine();
-                            stepsArr[i] = step;
+                                int n = 1 + i;
+                                Console.Write("Ingredient " + n + "\nName: ");
+                                String ingName = Console.ReadLine();
+                                Console.Write("Measurement: ");
+                                String ingMeasurement = Console.ReadLine();
+                                int quantity = InputMethods.CheckQuantity(1, 1000);
+                                ingredientsArr[i] = ingName;
+                                ingMeasurementArr[i] = ingMeasurement;
+                                QuantitiesArr[i] = quantity;
+                                Console.Clear();
+
+                            }
+
+                            Console.WriteLine("How many Steps will the recipe have?");
+                            int noOfSteps = InputMethods.numberValidation(1, 100);
+                            String[] stepsArr = new string[noOfSteps];
+                            for (int i = 0; i < noOfSteps; i++)
+                            {
+                                int n = 1 + i;
+                                Console.WriteLine("Step " + n + ": ");
+                                String step = Console.ReadLine();
+                                stepsArr[i] = step;
 
 
-                        }
-                        Recipes testOB = new Recipes(name, ingredientsArr, QuantitiesArr, ingMeasurementArr, stepsArr);
-                        
-                        Console.Clear();
-                        Console.WriteLine(testOB.ToString());
+                            }
+                            testOB = new Recipes(name, ingredientsArr, QuantitiesArr, ingMeasurementArr, stepsArr);
+
+                            ListWorker.recipeList.Add(testOB);
+
+                            Console.WriteLine("Recipe Created"); }
+
+                        else { Console.WriteLine("You have created a recipe already"); }
+                       
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
 
@@ -75,19 +82,90 @@ namespace st10303347_PROG6221POE
 
 
                     case 2:
-                        
+                        Console.Clear();
+                        if (testOB.RecipeName != null)
+                        {
+
+                            Console.WriteLine(testOB.ToString());
+                        }
                        
+                        else
+                        {
+                            Console.WriteLine("You have not Created a recipe yet");
+                        }
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
                         break;
                     case 3:
-                        Console.WriteLine("3333");
+                        Console.Clear();
+                        if (testOB.RecipeName != null)
+                        {
+                           Console.WriteLine("Welcome to scaling!\n1.Half \n2.Double\n3.Triple");
+                            int scaling= InputMethods.numberValidation(1, 3);
+                            switch (scaling) { 
+                            
+                            case 1:
+                                    newScale = 0.5;
+                                    Recipes.Scale(scale, testOB, newScale);
+                                    scale = newScale;
+                                    Console.WriteLine("Scale Done");
+                            break;
+                                case 2:
+                                    newScale = 2;
+                                    Recipes.Scale(scale, testOB, newScale);
+                                    scale = newScale;
+
+                                    Console.WriteLine("Scale Done");
+                                    break;
+                                case 3:
+                                    newScale = 3;
+                                    Recipes.Scale(scale, testOB, newScale);
+                                    scale = newScale;
+
+                                    Console.WriteLine("Scale Done!");
+                                    break;
+
+
+                            }    
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have not Created a recipe yet");
+                        }
                         
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
+
                         break;
 
                     case 4:
-                        Console.WriteLine("you picked 4");
+                        Console.Clear();
+                        if (testOB.RecipeName != null)
+                        {
+                            newScale = 1;
+                            Recipes.Scale(scale, testOB, newScale);
+                            scale = newScale;
+
+                            Console.WriteLine("Quantities Reset");
+
+                            Console.WriteLine("Press any key to continue.");
+                            Console.ReadKey(); 
+                        
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have not Created a recipe yet");
+                        }
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
                         break;
                     case 5:
-                        Console.WriteLine("you picked 5");
+                        Console.Clear();
+                        testOB.RecipeName = null;
+                        Console.WriteLine("Recipe Cleared");    
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
                         break;
                     case 6:
                         Console.WriteLine("Have an amazing day ;)");

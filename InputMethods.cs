@@ -34,6 +34,7 @@ namespace st10303347_PROG6221POE
 
                     if (intUserInput >= min && intUserInput <= max)
                     {
+                        Console.Clear();    
                         finalChoice = intUserInput;
                         correctInput = true;
                     }

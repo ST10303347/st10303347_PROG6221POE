@@ -11,13 +11,13 @@ namespace st10303347_PROG6221POE
     {
         public String RecipeName { get; set; }
         public String[] Ingredients { get; set; }
-        public int[] Quantities { get; set; }
+        public double[] Quantities { get; set; }
         public String[] Measurements { get; set; }
 
 
         public Array RecipeSteps { get; set;}
 
-        public Recipes(string recipeName, string[] ingredients, int[] quantities, string[] measurements, Array recipeSteps)
+        public Recipes(string recipeName, string[] ingredients, double[] quantities, string[] measurements, Array recipeSteps)
         {
             RecipeName = recipeName;
             Ingredients = ingredients;
@@ -26,7 +26,7 @@ namespace st10303347_PROG6221POE
             RecipeSteps = recipeSteps;
         }
 
-        public override string? ToString()
+        public override string ToString()
         {       StringBuilder finalString = new StringBuilder(); 
             finalString.AppendLine("Recipe Name: " + RecipeName);
             finalString.AppendLine("\nIngredients ");
@@ -45,6 +45,18 @@ namespace st10303347_PROG6221POE
             }
 
             return finalString.ToString();
+        }
+
+        public static void Scale(double currentScale, Recipes myRecipe, double newScale) {
+
+            for (int i = 0; i < myRecipe.Quantities.Length; i++)
+            {
+                myRecipe.Quantities[i] /= currentScale;
+                myRecipe.Quantities[i] *= newScale;
+            }
+
+
+
         }
     }
 }
