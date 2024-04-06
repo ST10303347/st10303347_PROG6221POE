@@ -24,7 +24,7 @@ namespace st10303347_PROG6221POE
             while (screenON) {
                 Console.Clear();
                 Console.WriteLine("1. Create a new recipe\n2.View Recipe\n3.Scale recipe\n4.Reset Quantities\n5.Clear Data\n6.Exit Aplication");
-                int menuchoice = InputMethods.numberValidation(1, 6);
+                int menuchoice = InputMethods.numbervalidation("choose an option from 1-6",1, 6);
             //Above is a method to validate user input so application does not crash  
                 switch (menuchoice)
                 {
@@ -33,7 +33,7 @@ namespace st10303347_PROG6221POE
                             Console.WriteLine("What is your recipe name");
                             string name = Console.ReadLine();
                             Console.WriteLine("How many ingredients will you be entering?");
-                            int noOfIngredients = InputMethods.numberValidation(1, 100);
+                            int noOfIngredients = InputMethods.numbervalidation("enter ingredients between 1-100",1, 100);
                             String[] ingredientsArr = new String[noOfIngredients];
                             double[] QuantitiesArr = new double[noOfIngredients];
                             String[] ingMeasurementArr = new String[noOfIngredients];

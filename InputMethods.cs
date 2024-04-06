@@ -66,6 +66,45 @@ namespace st10303347_PROG6221POE
             return finalChoice;
         }
 
+
+
+        public static int numbervalidation(String msg,int min, int max) {
+
+            int finalChoice = 0;
+            bool correctInput = false;
+            string userInput;
+            int intUserInput;
+
+            while (!correctInput)
+            {
+                userInput = Console.ReadLine();
+
+                try
+                {
+                    intUserInput = int.Parse(userInput);
+
+                    if (intUserInput >= min && intUserInput <= max)
+                    {
+                        Console.Clear();
+                        finalChoice = intUserInput;
+                        correctInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine(msg);
+                    }
+
+
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine(msg);
+
+                }
+            }
+
+            return finalChoice;
+        }
         public static int CheckQuantity(int min, int max)
         {
             int finalChoice = 0;
