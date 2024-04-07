@@ -47,7 +47,7 @@ namespace st10303347_PROG6221POE
                                 String ingName = Console.ReadLine();
                                 Console.Write("Measurement: ");
                                 String ingMeasurement = Console.ReadLine();
-                                int quantity = InputMethods.CheckQuantity(1, 1000);
+                                int quantity = InputMethods.numbervalidation("Please enter the quantity of your ingredients",1, 10000);
                                 ingredientsArr[i] = ingName;
                                 ingMeasurementArr[i] = ingMeasurement;
                                 QuantitiesArr[i] = quantity;
@@ -56,7 +56,7 @@ namespace st10303347_PROG6221POE
                             }
 
                             Console.WriteLine("How many Steps will the recipe have?");
-                            int noOfSteps = InputMethods.numberValidation(1, 100);
+                            int noOfSteps = InputMethods.numbervalidation("Please enter the number of steps your recipe has!!",1, 100);
                             String[] stepsArr = new string[noOfSteps];
                             for (int i = 0; i < noOfSteps; i++)
                             {
@@ -101,7 +101,7 @@ namespace st10303347_PROG6221POE
                         if (testOB.RecipeName != null)
                         {
                            Console.WriteLine("Welcome to scaling!\n1.Half \n2.Double\n3.Triple");
-                            int scaling= InputMethods.numberValidation(1, 3);
+                            int scaling= InputMethods.numbervalidation("Please choose a scaling option from 1-3",1, 3);
                             switch (scaling) { 
                             
                             case 1:
