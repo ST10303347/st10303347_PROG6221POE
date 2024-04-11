@@ -35,9 +35,11 @@ namespace st10303347_PROG6221POE
                         Console.Clear();
                         finalChoice = intUserInput;
                         correctInput = true;
+                        Console.ResetColor();
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(msg);
                     }
 
@@ -45,6 +47,7 @@ namespace st10303347_PROG6221POE
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(msg);
 
                 }

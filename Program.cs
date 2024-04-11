@@ -13,7 +13,7 @@ namespace st10303347_PROG6221POE
             Recipes testOB = new Recipes(null,null,null,null,null);
             double scale = 1;
             double newScale = 1;
-
+            
 
 
             //Starts Here
@@ -77,7 +77,9 @@ namespace st10303347_PROG6221POE
 
                             Console.WriteLine("Recipe Created"); }
 
-                        else { Console.WriteLine("You have created a recipe already"); }
+                        else {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("You have created a recipe already"); }
                        
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
@@ -94,7 +96,7 @@ namespace st10303347_PROG6221POE
                         }
                        
                         else
-                        {
+                        {Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("You have not Created a recipe yet");
                         }
                         Console.WriteLine("Press any key to continue.");
@@ -154,15 +156,16 @@ namespace st10303347_PROG6221POE
                                     break;
 
 
-                            }    
+                            }
+                            Console.WriteLine(testOB.ToString());
 
                         }
                         else
-                        {
+                        {Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("You have not Created a recipe yet");
                         }
                         
-                        Console.WriteLine(testOB.ToString());
+                        
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
 
@@ -184,6 +187,8 @@ namespace st10303347_PROG6221POE
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
+
                             Console.WriteLine("You have not Created a recipe yet");
                         }
                         Console.WriteLine("Press any key to continue.");
@@ -191,8 +196,26 @@ namespace st10303347_PROG6221POE
                         break;
                     case 5:
                         Console.Clear();
-                        testOB.RecipeName = null;
-                        Console.WriteLine("Recipe Cleared");    
+                       
+
+                        if (testOB.RecipeName != null)
+                        {
+                            Console.WriteLine("Press 1 to confirm Delete or 2 to cancel");
+                             int clearOrNot = InputMethods.numbervalidation("Press 1 to confirm delete or 2 to cancel", 1, 2);
+                           if(clearOrNot == 1)
+                            {
+
+                                testOB.RecipeName = null;
+                                Console.WriteLine("Recipe Cleared!!!");
+                            }
+
+                           
+                        }
+                        else 
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("You have not Created a recipe yet");
+                        }
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                         break;
