@@ -23,6 +23,8 @@ namespace st10303347_PROG6221POE
         //Boolean to keep screen on, Application will always return to the begining of a while loop after breaking out of a if statement or switch case
             while (screenON) {
                 Console.Clear();
+                Console.ResetColor();
+               Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("1. Create a new recipe\n2.View Recipe\n3.Scale recipe\n4.Reset Quantities\n5.Clear Data\n6.Exit Aplication");
                 int menuchoice = InputMethods.numbervalidation("choose an option from 1-6",1, 6);
             //Above is a method to validate user input so application does not crash  
@@ -30,6 +32,7 @@ namespace st10303347_PROG6221POE
                 {
                     case 1:
                         if (testOB.RecipeName == null) {
+                           
                             Console.WriteLine("What is your recipe name");
                             string name = Console.ReadLine();
                             Console.WriteLine("How many ingredients will you be entering?");
@@ -47,6 +50,7 @@ namespace st10303347_PROG6221POE
                                 String ingName = Console.ReadLine();
                                 Console.Write("Measurement: ");
                                 String ingMeasurement = Console.ReadLine();
+                                Console.Write("Quantity: ");
                                 int quantity = InputMethods.numbervalidation("Please enter the quantity of your ingredients",1, 10000);
                                 ingredientsArr[i] = ingName;
                                 ingMeasurementArr[i] = ingMeasurement;
@@ -100,29 +104,53 @@ namespace st10303347_PROG6221POE
                         Console.Clear();
                         if (testOB.RecipeName != null)
                         {
-                           Console.WriteLine("Welcome to scaling!\n1.Half \n2.Double\n3.Triple");
+                            newScale = 1;
+                            Recipes.Scale(scale, testOB, newScale);
+                            scale = newScale;
+                            Console.WriteLine(testOB.ToString());
+                            Console.WriteLine("Welcome to scaling!");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("1.Half");
+                            Console.ForegroundColor= ConsoleColor.Green;
+                            Console.WriteLine("2. Double");
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.WriteLine("3.Triple");
+                            Console.ForegroundColor = ConsoleColor.White;
                             int scaling= InputMethods.numbervalidation("Please choose a scaling option from 1-3",1, 3);
                             switch (scaling) { 
                             
                             case 1:
+                                    Console.ResetColor();
+                                    Console.Clear();
+                                    Console.WriteLine(testOB.ToString()); Console.WriteLine("*******New Recipe*******"); Console.WriteLine();
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     newScale = 0.5;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
-                                    Console.WriteLine("Scale Done");
-                            break;
+                                  
+                                    break;
                                 case 2:
+                                    Console.ResetColor();
+                                    Console.Clear();
+                                    Console.WriteLine(testOB.ToString()); Console.WriteLine("*******New Recipe*******"); Console.WriteLine();
+                                    Console.ForegroundColor = ConsoleColor.Green;
                                     newScale = 2;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
 
-                                    Console.WriteLine("Scale Done");
+                                    
                                     break;
                                 case 3:
+                                    Console.ResetColor();
+                                    Console.Clear();
+                                    Console.WriteLine(testOB.ToString()); Console.WriteLine("*******New Recipe*******"); Console.WriteLine();
+                                    Console.ForegroundColor = ConsoleColor.Magenta;
                                     newScale = 3;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
 
-                                    Console.WriteLine("Scale Done!");
+                                   
+                                 
                                     break;
 
 
@@ -134,6 +162,7 @@ namespace st10303347_PROG6221POE
                             Console.WriteLine("You have not Created a recipe yet");
                         }
                         
+                        Console.WriteLine(testOB.ToString());
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
 
@@ -170,6 +199,7 @@ namespace st10303347_PROG6221POE
                     case 6:
                         Console.WriteLine("Have an amazing day ;)");
                         System.Environment.Exit(0);
+                        
                         break;
 
 
