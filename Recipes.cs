@@ -29,7 +29,7 @@ namespace st10303347_PROG6221POE
         public override string ToString()
         {
             
-//neat to string for displaying my recipe
+//neat to string for displaying my recipe 
             StringBuilder finalString = new StringBuilder(); 
             finalString.AppendLine("Recipe Name: " + RecipeName);
             finalString.AppendLine("\nIngredients ");
