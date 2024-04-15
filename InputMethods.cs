@@ -64,8 +64,7 @@ namespace st10303347_PROG6221POE
             String finalmeasure = " ";
             //below is a list of valid measurements i created
             string[] ingredientMeasurements = {
-    "ml", "millilitre", "litre","l", "tsp", "tbsp", "tablespoon", "cup", "gram", "g", "kilogram", "kg", "teaspoon", "mg", 
-};
+    "ml", "millilitre", "litre","l", "tsp", "tbsp", "tablespoon", "cup", "gram", "g", "kilogram", "kg", "teaspoon", "mg", "teaspoons" , "mililitres" };
             while (!correctInput)
             {
                 Console.Write("Measurement: ");
