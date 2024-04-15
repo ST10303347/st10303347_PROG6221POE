@@ -10,29 +10,36 @@ namespace st10303347_PROG6221POE
         {
         //Declarations   
             Boolean screenON = true;
-            Recipes testOB = new Recipes(null,null,null,null,null);
+            String[] emptyarr = { };
+            double[] emptyarr2 = { };
+            Recipes testOB = new Recipes(" ",emptyarr,emptyarr2,emptyarr,emptyarr);
             double scale = 1;
             double newScale = 1;
+           
             
 
 
             //Starts Here
-            Console.WriteLine("Welcome to Recipe.net8");
+            
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Welcome to Recipe.net8!!!!!!!!");
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey();
 
-
-        //Boolean to keep screen on, Application will always return to the begining of a while loop after breaking out of a if statement or switch case
+            //Boolean to keep screen on, Application will always return to the begining of a while loop after breaking out of a if statement or switch case
             while (screenON) {
                 Console.Clear();
                 Console.ResetColor();
-               Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("1. Create a new recipe\n2.View Recipe\n3.Scale recipe\n4.Reset Quantities\n5.Clear Data\n6.Exit Aplication");
+                
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("1. Create a new recipe\n2.View Recipe\n3.Scale recipe\n4.Reset Quantities\n5.Delete Recipe\n6.Exit Aplication");
                 int menuchoice = InputMethods.numbervalidation("choose an option from 1-6",1, 6);
             //Above is a method to validate user input so application does not crash  
                 switch (menuchoice)
                 {
                     case 1:
-                        if (testOB.RecipeName == null) {
-                           
+                        if (testOB.RecipeName == " ") {
+   //Aplication takes user input and stores it in arrays if it can be more than 1 but the name is stored in a string                        
                             Console.WriteLine("What is your recipe name");
                             string name = Console.ReadLine();
                             Console.WriteLine("How many ingredients will you be entering?");
@@ -41,24 +48,27 @@ namespace st10303347_PROG6221POE
                             double[] QuantitiesArr = new double[noOfIngredients];
                             String[] ingMeasurementArr = new String[noOfIngredients];
                             Console.Clear();
-
+//Clear method keeps screen neat
                             for (int i = 0; i < noOfIngredients; i++)
                             {
 
                                 int n = 1 + i;
                                 Console.Write("Ingredient " + n + "\nName: ");
                                 String ingName = Console.ReadLine();
-                                Console.Write("Measurement: ");
-                                String ingMeasurement = Console.ReadLine();
+
+
+                                String ingMeasurement = InputMethods.measurementValidation();
+ //Quantity is verified using Double.min and max methods in Input methods class                             
+                                
                                 Console.Write("Quantity: ");
-                                int quantity = InputMethods.numbervalidation("Please enter the quantity of your ingredients",1, 10000);
+                                double quantity = InputMethods.QuantityValid("Please enter the quantity of your ingredients");
                                 ingredientsArr[i] = ingName;
                                 ingMeasurementArr[i] = ingMeasurement;
                                 QuantitiesArr[i] = quantity;
                                 Console.Clear();
 
                             }
-
+//the number of steps becomes the array size and prompts you to fill the array
                             Console.WriteLine("How many Steps will the recipe have?");
                             int noOfSteps = InputMethods.numbervalidation("Please enter the number of steps your recipe has!!",1, 100);
                             String[] stepsArr = new string[noOfSteps];
@@ -72,7 +82,7 @@ namespace st10303347_PROG6221POE
 
                             }
                             testOB = new Recipes(name, ingredientsArr, QuantitiesArr, ingMeasurementArr, stepsArr);
-
+                            Recipes.measurementConversion(testOB);
                             ListWorker.recipeList.Add(testOB);
 
                             Console.WriteLine("Recipe Created"); }
@@ -89,12 +99,13 @@ namespace st10303347_PROG6221POE
 
                     case 2:
                         Console.Clear();
-                        if (testOB.RecipeName != null)
+                        Recipes.measurementConversion(testOB);
+                        if (testOB.RecipeName != " ")
                         {
-
+                            
                             Console.WriteLine(testOB.ToString());
                         }
-                       
+//Changed error messages to red colour                       
                         else
                         {Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("You have not Created a recipe yet");
@@ -104,8 +115,9 @@ namespace st10303347_PROG6221POE
                         break;
                     case 3:
                         Console.Clear();
-                        if (testOB.RecipeName != null)
+                        if (testOB.RecipeName != " ")
                         {
+                            Recipes.measurementConversion(testOB);
                             newScale = 1;
                             Recipes.Scale(scale, testOB, newScale);
                             scale = newScale;
@@ -120,7 +132,7 @@ namespace st10303347_PROG6221POE
                             Console.ForegroundColor = ConsoleColor.White;
                             int scaling= InputMethods.numbervalidation("Please choose a scaling option from 1-3",1, 3);
                             switch (scaling) { 
-                            
+  //The colour of the menu option chosen is the colour the sclaled recipe will print                          
                             case 1:
                                     Console.ResetColor();
                                     Console.Clear();
@@ -129,7 +141,7 @@ namespace st10303347_PROG6221POE
                                     newScale = 0.5;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
-                                  
+                                    Recipes.measurementConversion(testOB);
                                     break;
                                 case 2:
                                     Console.ResetColor();
@@ -139,8 +151,9 @@ namespace st10303347_PROG6221POE
                                     newScale = 2;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
+                                    Recipes.measurementConversion(testOB);
 
-                                    
+
                                     break;
                                 case 3:
                                     Console.ResetColor();
@@ -150,13 +163,14 @@ namespace st10303347_PROG6221POE
                                     newScale = 3;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
+                                    Recipes.measurementConversion(testOB);
 
-                                   
-                                 
+
                                     break;
 
 
                             }
+                            Recipes.measurementConversion(testOB);
                             Console.WriteLine(testOB.ToString());
 
                         }
@@ -173,14 +187,15 @@ namespace st10303347_PROG6221POE
 
                     case 4:
                         Console.Clear();
-                        if (testOB.RecipeName != null)
+                        if (testOB.RecipeName != " ")
                         {
+
                             newScale = 1;
                             Recipes.Scale(scale, testOB, newScale);
                             scale = newScale;
 
                             Console.WriteLine("Quantities Reset");
-
+                            Recipes.measurementConversion(testOB);
                             Console.WriteLine("Press any key to continue.");
                             Console.ReadKey(); 
                         
@@ -198,14 +213,14 @@ namespace st10303347_PROG6221POE
                         Console.Clear();
                        
 
-                        if (testOB.RecipeName != null)
+                        if (testOB.RecipeName != " ")
                         {
                             Console.WriteLine("Press 1 to confirm Delete or 2 to cancel");
                              int clearOrNot = InputMethods.numbervalidation("Press 1 to confirm delete or 2 to cancel", 1, 2);
                            if(clearOrNot == 1)
                             {
 
-                                testOB.RecipeName = null;
+                                testOB.RecipeName = " ";
                                 Console.WriteLine("Recipe Cleared!!!");
                             }
 
