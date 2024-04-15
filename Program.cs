@@ -21,7 +21,7 @@ namespace st10303347_PROG6221POE
 
             //Starts Here
             
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to Recipe.net8!!!!!!!!");
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
