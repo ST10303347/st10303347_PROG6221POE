@@ -82,7 +82,7 @@ namespace st10303347_PROG6221POE
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Not correct measurement!");
+                    Console.WriteLine("Not correct measurement! ");
 
 
                 }
