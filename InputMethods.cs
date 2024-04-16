@@ -61,7 +61,7 @@ namespace st10303347_PROG6221POE
            
             bool correctInput = false;
             String userInput;
-            String finalmeasure = " ";
+            String finalmeasure = "";
             //below is a list of valid measurements i created
             string[] ingredientMeasurements = {
     "ml", "millilitre", "litre","l", "tsp", "tbsp", "tablespoon", "cup", "gram", "g", "kilogram", "kg", "teaspoon", "mg", "teaspoons" , "mililitres" };
@@ -69,34 +69,26 @@ namespace st10303347_PROG6221POE
             {
                 Console.Write("Measurement: ");
                 userInput = Console.ReadLine().Trim().ToLower();
+                bool matchesValidMeasurement = ingredientMeasurements.Any(item => item.Equals(userInput, StringComparison.OrdinalIgnoreCase));
 
-                try
+
+                if (matchesValidMeasurement)
                 {
-                    
 
-                    if (ingredientMeasurements.Contains(userInput))
-                    {
-                        
-                        finalmeasure = userInput;
-                        correctInput = true;
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Not correct measurement!");
-                      
-
-                    }
-
-
+                    finalmeasure = userInput;
+                    correctInput = true;
+                    Console.ResetColor();
                 }
-                catch (FormatException)
+                else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Not correct measurement!");
-                   
+
+
                 }
+
+
+
             }
 
 
@@ -114,12 +106,15 @@ namespace st10303347_PROG6221POE
 
             while (!correctInput)
             {
+                Console.Write("Quantity: ");
                 userInput = Console.ReadLine();
 
                 try
                 {
-                    //this allows user to add , or . between numbers
-                    DUserInput = double.Parse(userInput.Trim().Replace(".", "").Replace(",", ""));
+                    //Used this special parse method to handle periods in the code, the Replace("," , "") was reading 0.5 as 5
+                    //This method correctly interprets decimals 
+                    DUserInput = double.Parse(userInput, System.Globalization.CultureInfo.InvariantCulture);
+
 
                     if (DUserInput >= double.MinValue && DUserInput <= double.MaxValue)
                     {

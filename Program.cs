@@ -32,7 +32,7 @@ namespace st10303347_PROG6221POE
                 Console.ResetColor();
                 
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("1. Create a new recipe\n2.View Recipe\n3.Scale recipe\n4.Reset Quantities\n5.Delete Recipe\n6.Exit Aplication");
+                Console.WriteLine("1.Create a new recipe\n2.View Recipe\n3.Scale recipe\n4.Reset Quantities\n5.Delete Recipe\n6.Exit Aplication");
                 int menuchoice = InputMethods.numbervalidation("choose an option from 1-6",1, 6);
             //Above is a method to validate user input so application does not crash  
                 switch (menuchoice)
@@ -60,7 +60,7 @@ namespace st10303347_PROG6221POE
                                 String ingMeasurement = InputMethods.measurementValidation();
  //Quantity is verified using Double.min and max methods in Input methods class                             
                                 
-                                Console.Write("Quantity: ");
+                                
                                 double quantity = InputMethods.QuantityValid("Please enter the quantity of your ingredients");
                                 ingredientsArr[i] = ingName;
                                 ingMeasurementArr[i] = ingMeasurement;
@@ -82,7 +82,7 @@ namespace st10303347_PROG6221POE
 
                             }
                             testOB = new Recipes(name, ingredientsArr, QuantitiesArr, ingMeasurementArr, stepsArr);
-                            Recipes.measurementConversion(testOB);
+                            
                             ListWorker.recipeList.Add(testOB);
 
                             Console.WriteLine("Recipe Created"); }
@@ -117,7 +117,7 @@ namespace st10303347_PROG6221POE
                         Console.Clear();
                         if (testOB.RecipeName != " ")
                         {
-                            Recipes.measurementConversion(testOB);
+                            
                             newScale = 1;
                             Recipes.Scale(scale, testOB, newScale);
                             scale = newScale;
@@ -141,7 +141,7 @@ namespace st10303347_PROG6221POE
                                     newScale = 0.5;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
-                                    Recipes.measurementConversion(testOB);
+                                    
                                     break;
                                 case 2:
                                     Console.ResetColor();
@@ -151,7 +151,7 @@ namespace st10303347_PROG6221POE
                                     newScale = 2;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
-                                    Recipes.measurementConversion(testOB);
+                                   
 
 
                                     break;
@@ -163,7 +163,7 @@ namespace st10303347_PROG6221POE
                                     newScale = 3;
                                     Recipes.Scale(scale, testOB, newScale);
                                     scale = newScale;
-                                    Recipes.measurementConversion(testOB);
+                                   
 
 
                                     break;
@@ -171,6 +171,8 @@ namespace st10303347_PROG6221POE
 
                             }
                             Recipes.measurementConversion(testOB);
+                            Recipes.measurementConversion(testOB);
+
                             Console.WriteLine(testOB.ToString());
 
                         }
@@ -195,8 +197,8 @@ namespace st10303347_PROG6221POE
                             scale = newScale;
 
                             Console.WriteLine("Quantities Reset");
-                            Recipes.measurementConversion(testOB);
-                            Console.WriteLine("Press any key to continue.");
+                           
+                            
                             Console.ReadKey(); 
                         
                         }
